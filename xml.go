@@ -943,6 +943,7 @@ func mapToXmlIndent(doIndent bool, s *string, key string, value interface{}, pp 
 			endTag = true
 			break
 		}
+		*s += "<" + key +">\n"
 		for _, v := range value.([]interface{}) {
 			if doIndent {
 				p.Indent()
@@ -954,6 +955,7 @@ func mapToXmlIndent(doIndent bool, s *string, key string, value interface{}, pp 
 				p.Outdent()
 			}
 		}
+		*s += "</" + key +">\n"
 		return nil
 	case []string:
 		// This was added by https://github.com/slotix ... not a type that
